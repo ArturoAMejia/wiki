@@ -14,11 +14,26 @@ def error_page(request):
     return render(request, 'encyclopedia/404.html')
 
 
+def search_page(request):
+    value = request.GET['q']
+
+    entries = util.list_entries()
+
+    if value in entries:
+        return redirect(f"/wiki/{value}")
+    else:
+        coincidences = [i for i in entries if value in i]
+        print(coincidences)
+        if coincidences:
+            return render(request, 'encyclopedia/result.html', {"entries":coincidences})
+        else:
+            return render(request, 'encyclopedia/404.html',{"message": "No matches found"})
+
 def entry(request, title):
     entry = util.get_entry(title)
 
     if (entry == None):
-        return render(request, "encyclopedia/404.html")
+        return render(request, "encyclopedia/404.html", { "message": "Entry not found" })
     markdowner = Markdown()
 
     content = markdowner.convert(entry)
