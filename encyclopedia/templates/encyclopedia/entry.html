@@ -1,12 +1,10 @@
-{% extends 'encyclopedia/layout.html' %} 
-{% block title %} {{name}} {% endblock %}
-
+{% extends 'encyclopedia/layout.html' %} {% block title %} {{name}} {% endblock%} 
 {% block body %}
 
-
-<div>
-
-  <a href="{% url 'edit_page' name %}">Edit page</a>
+<div class="flex justify-end">
+  <a class="bg-sky-900 rounded-md p-3" href="{% url 'edit_page' name %}"
+    >Edit page</a
+  >
 </div>
-{{ content | safe }}
+<section >{{ content | safe }}</section>
 {% endblock %}

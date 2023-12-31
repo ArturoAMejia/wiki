@@ -1,23 +1,31 @@
 {% extends 'encyclopedia/layout.html' %} {% block title %}New page{% endblock %}
-{% block body %}
-
-{% if error %}
-<h2>{{ error }}</h2>
+{% block body %} {% if error %}
+<h2 class="text-3xl font-bold">{{ error }}</h2>
 {% endif %}
 
-<h1>New Page</h1>
+<h1 class="text-4xl font-bold mb-4">New Page</h1>
 
 <!-- TODO: Style this -->
 
-<form action="{% url 'new_page' %}" method="post">
+<form class="flex flex-col gap-2" action="{% url 'new_page' %}" method="post">
   {% csrf_token %}
 
   <label for="title">Title:</label>
-  <input type="text" name="title" id="title" />
+  <input
+    class="p-2 rounded-md w-full text-black"
+    type="text"
+    name="title"
+    id="title"
+  />
 
   <label for="content">Content:</label>
-  <textarea name="content" id="content" cols="30" rows="10"></textarea>
-
-  <button type="submit">Create</button>
+  <textarea
+    class="w-full h-96 rounded-md text-black p-2"
+    name="content"
+    id="content"
+    cols="20"
+    rows="5"
+  ></textarea>
+  <button class="bg-blue-900 rounded-md p-3 mt-2" type="submit">Create</button>
 </form>
 {% endblock %}

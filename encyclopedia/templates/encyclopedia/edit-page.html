@@ -1,15 +1,20 @@
-{% extends 'encyclopedia/layout.html' %} {% block title %}Edit page{% endblock%} 
+{% extends 'encyclopedia/layout.html' %} {% block title %}Edit page{% endblock%}
 {% block body %}
 
-<h1>Edit Page</h1>
+<h1 class="text-4xl font-bold mb-4">Edit Page</h1>
 
 <!-- TODO: Style this -->
 
-<form action="{% url 'edit_page' title %}" method="post">
+<form
+  class="flex flex-col gap-2"
+  action="{% url 'edit_page' title %}"
+  method="post"
+>
   {% csrf_token %}
 
   <label for="title">Title:</label>
   <input
+    class="p-2 rounded-md w-full text-black"
     disabled
     type="text"
     name="title"
@@ -18,10 +23,16 @@
   />
 
   <label for="content">Content:</label>
-  <textarea name="content" id="content" cols="30" rows="10">
+  <textarea
+    class="w-full h-96 rounded-md text-black p-2"
+    name="content"
+    id="content"
+    cols="20"
+    rows="5"
+  >
 {{ content }}</textarea
   >
 
-  <button type="submit">Edit</button>
+  <button class="bg-blue-900 rounded-md p-3 mt-2" type="submit">Edit</button>
 </form>
 {% endblock %}

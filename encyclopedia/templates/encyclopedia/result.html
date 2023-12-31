@@ -1,10 +1,10 @@
-{% extends "encyclopedia/layout.html" %} {% block title %} Encyclopedia {%endblock %} 
-{% block body %}
-<h1>All coincidences</h1>
+{% extends "encyclopedia/layout.html" %} {% block title %} Encyclopedia
+{%endblock %} {% block body %}
+<h1 class="text-4xl font-bold mb-4">All coincidences</h1>
 
-<ul>
+<ul class="list-disc text-lg">
   {% for entry in entries %}
-  <li>
+  <li class="hover:text-sky-900">
     <a href="{% url 'entry' entry %}"> {{ entry }} </a>
   </li>
   {% endfor %}

@@ -7,31 +7,51 @@
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
   </head>
-  <body>
-    <div class="row">
-      <div class="sidebar col-lg-2 col-md-3">
-        <h2>Wiki</h2>
+  <body class="bg-black text-white m-16 font-">
+    <div class="flex">
+      <div class="w-1/3">
+        <h2 class="text-3xl font-bold">Wiki</h2>
         <form method="get" action="{% url 'search' %}">
           <input
-            class="search"
+            class="p-2 rounded-md w-full text-black"
             type="text"
             name="q"
             placeholder="Search Encyclopedia"
           />
         </form>
-        <div>
-          <a href="{% url 'index' %}">Home</a>
+        <div class="my-6">
+          <a class="p-2 bg-sky-900 mt-4 rounded-md" href="{% url 'index' %}"
+            >Home</a
+          >
         </div>
-        <div>
-          <a href="{% url 'new_page' %}"> Create New Page </a>
+        <div class="my-6">
+          <a class="p-2 bg-sky-900 mt-4 rounded-md" href="{% url 'new_page' %}">
+            Create New Page
+          </a>
         </div>
-        <div>
-          <a href="{% url 'random_page' %}"> Random Page </a>
+        <div class="my-6">
+          <a
+            class="p-2 bg-sky-900 mt-4 rounded-md"
+            href="{% url 'random_page' %}"
+          >
+            Random Page
+          </a>
         </div>
         {% block nav %} {% endblock %}
       </div>
-      <div class="main col-lg-10 col-md-9">{% block body %} {% endblock %}</div>
+      <main class="px-16 w-2/3 h-screen">{% block body %} {% endblock %}</main>
     </div>
   </body>
 </html>
